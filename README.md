@@ -18,7 +18,9 @@ Publish a Google Apps Script Endpoint URL
 2. [Prepare a Docker environment](https://www.google.com/url?q=https://www.docker.io/&usd=2&usg=ALhdy2-uNZKLM-jQQXncnc5eKHG-11c4og)
 3. Execute the following docker command with the Endpoint URL
 
-    $ sudo docker run -p 26578:26578 -p 26571:26571 -p 24224:24224 -p 24224:24224/udp -e GAS_URL=<<ENDPOINT URL>> -t -i -d kazunori279/fluentd-norikra-gas
+```
+$ sudo docker run -p 26578:26578 -p 26571:26571 -p 24224:24224 -p 24224:24224/udp -e GAS_URL=<<ENDPOINT URL>> -t -i -d kazunori279/fluentd-norikra-gas
+```
 
 4. Now the host works as a Fluentd + Norikra server. Configure your Fluentd clients to forward logs to the host, and add Norikra queries by using its Web UI. The query result will be displayed as a new sheet on this spreadsheet. See [this site](http://norikra.github.io/) for details of Norikra
 
@@ -28,6 +30,7 @@ Publish a Google Apps Script Endpoint URL
 3. Copy `/lib/fluent/plugin/out_https.rb` into `/plugin` directory of your Fluentd installation
 4. Configure `td-agent.conf` to forward Fluentd logs to the endpoint and restart td-agent
 
+```td-agent.conf
     <match **>
       type            http
       use_ssl         true
@@ -37,6 +40,7 @@ Publish a Google Apps Script Endpoint URL
       http_method     post
       serializer      form
     </match>
+```
 
 ## Usage:
 
