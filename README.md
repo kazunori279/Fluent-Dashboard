@@ -1,13 +1,13 @@
 fluent-gas-dashboard
 ====================
 
-fluent-gas-dashboard is a Google Spreadsheet is designed to receive Fluentd event logs and display charts from them.
+fluent-gas-dashboard is a [Google Spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AtBJDW02Hvh9dHUtZFlPQ0FRRGltY3dHb3hWaE11Wmc#gid=206) that is designed to receive Fluentd event logs and display charts from them.
 
 ## Getting Started:
 
 Publish a Google Apps Script Endpoint URL
 
-1. Select `File` - `Make a copy` menu to make a copy of this spreadsheet.
+1. Select `File` - `Make a copy` menu to make a copy of [this spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AtBJDW02Hvh9dHUtZFlPQ0FRRGltY3dHb3hWaE11Wmc#gid=206).
 2. Select `Tools` - `Script editor...` menu
 3. On the Script editor, select `Publish` - `Deploy as web app...`
 4. On the `Deploy as web app` dialog, enter `1` in the `Project version` field and click `Save New Version`, select `anyone including allowing anonymous access`, and click `Deploy` button.
