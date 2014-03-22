@@ -7,13 +7,13 @@ fluent-gas-dashboard is a [Google Spreadsheet](https://docs.google.com/spreadshe
 
 Publish a Google Apps Script Endpoint URL
 
-1. Open [this spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AtBJDW02Hvh9dHUtZFlPQ0FRRGltY3dHb3hWaE11Wmc#gid=206) and select `File` - `Make a copy` menu to make a copy of it.
-2. Copy the URL of the copied spreadsheet to clipboard.
+1. Open [this spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AtBJDW02Hvh9dHUtZFlPQ0FRRGltY3dHb3hWaE11Wmc#gid=206) and select `File` - `Make a copy` menu to make a copy of it
+2. Copy the URL of the copied spreadsheet to clipboard
 3. Select `Tools` - `Script editor...` menu
-4. On the Script editor, open `fluent_listener.gs`. Paste the copied URL on the place of `<<PLEASE PUT YOUR SPREADSHEET URL HERE>>`. Select `File` - `Save` menu to save the file.
+4. On the Script editor, open `fluent_listener.gs`. Paste the copied URL on the place of `<<PLEASE PUT YOUR SPREADSHEET URL HERE>>`. Select `File` - `Save` menu to save the file
 5. select `Publish` - `Deploy as web app...`
 6. On the `Deploy as web app` dialog, enter `1` in the `Project version` field and click `Save New Version`, select `anyone including allowing anonymous access`, and click `Deploy` button
-7. Select the `Current web app URL`, copy it and paste the URL to anywhere you can keep it
+7. Select the `Current web app URL`, copy it and paste the URL to clipboard or text file to use it later
 
 ### Option A: Use the Endpoint with `fluentd-norikra-gas` Docker image:
 1. [Configure a host for Fluentd installation](https://www.google.com/url?q=http://docs.fluentd.org/articles/before-install&usd=2&usg=ALhdy2-Eq3wSUPNxaZr13oC2Mt5UssbUhw)
