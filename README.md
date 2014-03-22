@@ -48,7 +48,7 @@ $ sudo docker run -p 26578:26578 -p 26571:26571 -p 24224:24224 -p 24224:24224/ud
 
 ## Usage:
 
-- The endpoint can only receive one event log per a few seconds. Do not use it for receiving streaming events. Recommended event rate is 1 event per 3 seconds
+- The endpoint can only receive one event log per a few seconds for each sheet. Do not use it for receiving streaming events. Recommended event rate is 1 event per 3 seconds for each sheet
 - When the endpoint receive a new event log, it creates a new sheet with the Fluentd tag name (or Norikra query name)
 - If the tag name has a suffix `_AREA`, `_BAR`, `_COLUMN`, `_LINE`, `_SCATTER`, or `_TABLE`, it will also create a new sheet with a specified chart
 - If the tag name has a suffix `_AREA_STACKED`, `_BAR_STACKED` or `_COLUMN_STACKED`, it will create a stacked chart
