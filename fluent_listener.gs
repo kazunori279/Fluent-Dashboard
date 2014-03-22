@@ -2,6 +2,9 @@
 // fluent_listerner.gs: receives fluentd event log via https and generate a sheet with a chart
 //
 
+// SPREADSHEET URL
+SPREADSHEET_URL = "<<PLEASE PUT YOUR SPREADSHEET URL HERE>>";
+
 // CONSTS
 MAX_ROWS_LARGE = 300; // for AREA, LINE, SCATTER and TABLE
 MAX_ROWS_SMALL = 30;  // for BAR and COLUMN
@@ -13,7 +16,7 @@ function doPost(e){
   
   // for testing
   if (!e) {
-    e = {"parameter": {"value1" : Math.random() * 10, "value2" : Math.random() * 10, "value3" : Math.random() * 10, "tag" : "test6_LINE"}};
+    e = {"parameter": {"value1" : Math.random() * 10, "value2" : Math.random() * 10, "value3" : Math.random() * 10, "tag" : "test_LINE"}};
   }
 
   // extract fluentd tag
@@ -86,8 +89,7 @@ function getOrInsertSheetByTag(tag, colSize) {
   }
   
   // check if there's existing table sheet
-  var sheets = SpreadsheetApp.getActiveSpreadsheet();
-  SpreadsheetApp.setActiveSpreadsheet(sheets);
+  var sheets = SpreadsheetApp.openByUrl(SPREADSHEET_URL);
   var tableSheet = sheets.getSheetByName(tableSheetName);
   if (tableSheet) {
     return tableSheet;
@@ -121,3 +123,7 @@ function getOrInsertSheetByTag(tag, colSize) {
   return tableSheet;
 }
 
+// for testing
+function doGet(e) {
+  return doPost(e);
+}
