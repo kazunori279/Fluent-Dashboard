@@ -11,9 +11,11 @@ Publish a Google Apps Script Endpoint URL
 2. Copy the URL of the copied spreadsheet to clipboard
 3. Select `Tools` - `Script editor...` menu
 4. On the Script editor, open `fluent_listener.gs`. Paste the copied URL on the place of `<<PLEASE PUT YOUR SPREADSHEET URL HERE>>`. Select `File` - `Save` menu to save the file
-5. select `Publish` - `Deploy as web app...`
-6. On the `Deploy as web app` dialog, enter `1` in the `Project version` field and click `Save New Version`, select `anyone including allowing anonymous access`, and click `Deploy` button
+5. Select `Publish` - `Deploy as web app...`
+6. On the `Deploy as web app` dialog, enter `1` in the `Project version` field and click `Save New Version`, select `anyone including allowing anonymous access` on the `Who has access to the app` menu, and click `Deploy` button
 7. Select the `Current web app URL`, copy it and paste the URL to clipboard or text file to use it later
+8. Select `Run` - `doPost` menu, click `Continue` button of the `Authorization Required` dialog and click `Accept` button on the `Request for Permission` dialog
+9. Confirm that there are `test` and `test_LINE` sheets appeared on the spreadsheet. Now it's ready to accept event logs from Fluentd
 
 ### Option A: Use the Endpoint with `fluentd-norikra-gas` Docker image:
 1. [Configure a host for Fluentd installation](https://www.google.com/url?q=http://docs.fluentd.org/articles/before-install&usd=2&usg=ALhdy2-Eq3wSUPNxaZr13oC2Mt5UssbUhw)
