@@ -17,7 +17,10 @@ Publish a Google Apps Script Endpoint URL
 8. Select `Run` - `doPost` menu, click `Continue` button of the `Authorization Required` dialog and click `Accept` button on the `Request for Permission` dialog
 9. Confirm that there are `test` and `test_LINE` sheets appeared on the spreadsheet. Now it's ready to accept event logs from Fluentd
 
-### Option A: Use the Endpoint with `fluentd-norikra-gas` Docker image:
+### Option A: Use with `fluentd-norikra-gas` Docker image:
+
+In this option, you can use the spreadsheet as a dashboard for [Norikra](http://norikra.github.io/), a Complex Event Processing (CEP) tool that let you use SQL for fast and scalable event log aggregation.
+
 1. [Configure a host for Fluentd installation](https://www.google.com/url?q=http://docs.fluentd.org/articles/before-install&usd=2&usg=ALhdy2-Eq3wSUPNxaZr13oC2Mt5UssbUhw)
 2. [Prepare a Docker environment](https://www.google.com/url?q=https://www.docker.io/&usd=2&usg=ALhdy2-uNZKLM-jQQXncnc5eKHG-11c4og)
 3. Execute the following docker command with the Endpoint URL
@@ -28,7 +31,10 @@ $ sudo docker run -p 26578:26578 -p 26571:26571 -p 24224:24224 -p 24224:24224/ud
 
 4. Now the host works as a Fluentd + Norikra server. Configure your Fluentd clients to forward logs to the host, and add Norikra queries by using its Web UI. The query result will be displayed as a new sheet on this spreadsheet. See [this site](http://norikra.github.io/) for details of Norikra
 
-### Option B: Use the Endpoint with fluent-plugin-out-https:
+### Option B: Use with fluent-plugin-out-https:
+
+In this option, you can use the spreadsheet as a dashboard for any event log collected by Fluentd. But please note the spreadsheet can accept only one event log per a few seconds. You would need some other plugins to aggregate the logs before passing them to the spreadsheet.
+
 1. [Configure a host for Fluentd installation](https://www.google.com/url?q=http://docs.fluentd.org/articles/before-install&usd=2&usg=ALhdy2-Eq3wSUPNxaZr13oC2Mt5UssbUhw)
 2. Download [fluent-plugin-out-https](https://www.google.com/url?q=https://github.com/kazunori279/fluent-plugin-out-https&usd=2&usg=ALhdy28zgZOuf3L6f8uw3RZDVZefvDH1eA)
 3. Copy `/lib/fluent/plugin/out_https.rb` into `/plugin` directory of your Fluentd installation
@@ -48,8 +54,8 @@ $ sudo docker run -p 26578:26578 -p 26571:26571 -p 24224:24224 -p 24224:24224/ud
 
 ## Usage:
 
-- The endpoint can only receive one event log per a few seconds for each sheet. Do not use it for receiving streaming events. Recommended event rate is 1 event per 3 seconds for each sheet
-- When the endpoint receive a new event log, it creates a new sheet with the Fluentd tag name (or Norikra query name)
+- The spreadsheet can only receive one event log per a few seconds for each sheet. Do not use it for receiving streaming events. Recommended event rate is 1 event per 3 seconds for each sheet
+- When the spreadsheet receive an event log with a new tag name, it creates a new sheet with the Fluentd tag name (or Norikra query name)
 - If the tag name has a suffix `_AREA`, `_BAR`, `_COLUMN`, `_LINE`, `_SCATTER`, or `_TABLE`, it will also create a new sheet with a specified chart
 - If the tag name has a suffix `_AREA_STACKED`, `_BAR_STACKED` or `_COLUMN_STACKED`, it will create a stacked chart
-- The endpoint URL is not secured by authentication. Please make sure not to publish the URL to anywhere
+- The endpoint URL is not secured by authentication. Please make sure to keep the URL secret and not to make it public
