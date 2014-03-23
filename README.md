@@ -13,7 +13,7 @@ Publish a Google Apps Script Endpoint URL
 4. On the Script editor, open `fluent_listener.gs`. Paste the copied URL on the place of `<<PLEASE PUT YOUR SPREADSHEET URL HERE>>`. Select `File` - `Save` menu to save the file
 5. Select `Publish` - `Deploy as web app...`
 6. On the `Deploy as web app` dialog, enter `1` in the `Project version` field and click `Save New Version`, select `anyone including allowing anonymous access` on the `Who has access to the app` menu, and click `Deploy` button
-7. Select the `Current web app URL`, copy it and paste the URL to clipboard or text file to use it later
+7. Select the `Current web app URL`. This is the endpoint URL for receiving event logs from Fluentd. Copy and paste the URL to clipboard or anywhere to use it later
 8. Select `Run` - `doPost` menu, click `Continue` button of the `Authorization Required` dialog and click `Accept` button on the `Request for Permission` dialog
 9. Confirm that there are `test` and `test_LINE` sheets appeared on the spreadsheet. Now it's ready to accept event logs from Fluentd
 
@@ -33,7 +33,7 @@ $ sudo docker run -p 26578:26578 -p 26571:26571 -p 24224:24224 -p 24224:24224/ud
 
 ### Option B: Use with fluent-plugin-out-https:
 
-In this option, you can use the spreadsheet as a dashboard for any event log collected by Fluentd. But please note the spreadsheet can accept only one event log per a few seconds. You would need some other plugins to aggregate the logs before passing them to the spreadsheet.
+In this option, you can use the spreadsheet as a dashboard for any event log collected by Fluentd. 
 
 1. [Configure a host for Fluentd installation](https://www.google.com/url?q=http://docs.fluentd.org/articles/before-install&usd=2&usg=ALhdy2-Eq3wSUPNxaZr13oC2Mt5UssbUhw)
 2. Download [fluent-plugin-out-https](https://www.google.com/url?q=https://github.com/kazunori279/fluent-plugin-out-https&usd=2&usg=ALhdy28zgZOuf3L6f8uw3RZDVZefvDH1eA)
@@ -54,7 +54,7 @@ In this option, you can use the spreadsheet as a dashboard for any event log col
 
 ## Usage:
 
-- The spreadsheet can only receive one event log per a few seconds for each sheet. Do not use it for receiving streaming events. Recommended event rate is 1 event per 3 seconds for each sheet
+- The spreadsheet can only receive one event log per a few seconds for each sheet. You can use it for receiving aggregated statistics (such as req/s, average CPU/memory usage etc) every few seconds, rather than using it for receiving the raw streaming events. Recommended event rate is 1 event per 3 seconds for each sheet.
 - When the spreadsheet receive an event log with a new tag name, it creates a new sheet with the Fluentd tag name (or Norikra query name)
 - If the tag name has a suffix `_AREA`, `_BAR`, `_COLUMN`, `_LINE`, `_SCATTER`, or `_TABLE`, it will also create a new sheet with a specified chart
 - If the tag name has a suffix `_AREA_STACKED`, `_BAR_STACKED` or `_COLUMN_STACKED`, it will create a stacked chart
