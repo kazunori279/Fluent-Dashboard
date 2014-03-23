@@ -38,7 +38,7 @@ In this option, you can use the spreadsheet as a dashboard for any event log col
 1. [Configure a host for Fluentd installation](https://www.google.com/url?q=http://docs.fluentd.org/articles/before-install&usd=2&usg=ALhdy2-Eq3wSUPNxaZr13oC2Mt5UssbUhw)
 2. Download [fluent-plugin-out-https](https://www.google.com/url?q=https://github.com/kazunori279/fluent-plugin-out-https&usd=2&usg=ALhdy28zgZOuf3L6f8uw3RZDVZefvDH1eA)
 3. Copy `/lib/fluent/plugin/out_https.rb` into `/plugin` directory of your Fluentd installation
-4. Edit `td-agent.conf` to add the following match element. Replace the `<<ENDPOINT URL>>` with your endpoint URL and edit the `**` pattern appropriately. Save the file and restart td-agent
+4. Edit `td-agent.conf` to add the following match element. Replace the `<<ENDPOINT URL>>` with your endpoint URL and edit the `**` pattern if needed. Save the file and restart td-agent
 
 ```td-agent.conf
     <match **>
