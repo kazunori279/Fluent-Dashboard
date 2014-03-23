@@ -54,7 +54,7 @@ In this option, you can use the spreadsheet as a dashboard for any event log col
 
 ## Usage:
 
-- The spreadsheet can only receive one event log per a few seconds for each sheet. You can use it for receiving aggregated statistics (such as req/s, average CPU/memory usage etc) every few seconds, rather than using it for receiving the raw streaming events. Recommended event rate is 1 event per 3 seconds for each sheet.
+- The spreadsheet can only receive one event log per a few seconds for each sheet. You can use it for receiving aggregated statistics (such as req/s, average CPU/memory usage etc) every few seconds, rather than using it for receiving raw streaming events. Recommended event rate is 1 event per 3 seconds for each sheet.
 - When the spreadsheet receive an event log with a new tag name, it creates a new sheet with the Fluentd tag name (or Norikra query name)
 - If the tag name has a suffix `_AREA`, `_BAR`, `_COLUMN`, `_LINE`, `_SCATTER`, or `_TABLE`, it will also create a new sheet with a specified chart
 - If the tag name has a suffix `_AREA_STACKED`, `_BAR_STACKED` or `_COLUMN_STACKED`, it will create a stacked chart
