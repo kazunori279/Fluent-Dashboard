@@ -5,7 +5,7 @@ fluent-gas-dashboard is a [Google Spreadsheet](https://docs.google.com/spreadshe
 
 ## Getting Started:
 
-Publish a Google Apps Script Endpoint URL
+To use the spreadsheet, you need to copy and configure it for receiving Fluentd event by its endpoint URL with the following steps.
 
 1. Open [this spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AtBJDW02Hvh9dHUtZFlPQ0FRRGltY3dHb3hWaE11Wmc#gid=206) and select `File` - `Make a copy` menu to make a copy of it
 2. Copy the URL of the copied spreadsheet to clipboard
@@ -16,6 +16,8 @@ Publish a Google Apps Script Endpoint URL
 7. Select the `Current web app URL`. This is the endpoint URL for receiving event logs from Fluentd. Copy and paste the URL to clipboard or anywhere to use it later
 8. Select `Run` - `doPost` menu, click `Continue` button of the `Authorization Required` dialog and click `Accept` button on the `Request for Permission` dialog
 9. Confirm that there are `test` and `test_LINE` sheets appeared on the spreadsheet. Now it's ready to accept event logs from Fluentd
+
+You can choose one from the two options to use the spreadsheet.
 
 ### Option A: Use with `fluentd-norikra-gas` Docker image:
 
