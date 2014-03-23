@@ -58,4 +58,4 @@ In this option, you can use the spreadsheet as a dashboard for any event log col
 - When the spreadsheet receive an event log with a new tag name, it creates a new sheet with the Fluentd tag name (or Norikra query name)
 - If the tag name has a suffix `_AREA`, `_BAR`, `_COLUMN`, `_LINE`, `_SCATTER`, or `_TABLE`, it will also create a new sheet with a specified chart
 - If the tag name has a suffix `_AREA_STACKED`, `_BAR_STACKED` or `_COLUMN_STACKED`, it will create a stacked chart
-- The endpoint URL is not secured by authentication. Please make sure to keep the URL secret and not to make it public
+- The endpoint URL does not support authentication. Please make sure to keep the URL secret and not to make it public
