@@ -1,13 +1,13 @@
 Fluent Dashboard
 ====================
 
-Fluent Dashboard is a [Google Spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AtBJDW02Hvh9dHUtZFlPQ0FRRGltY3dHb3hWaE11Wmc#gid=206) that receives Fluentd event logs and display charts from them.
+Fluent Dashboard is a Google Spreadsheet that receives Fluentd event logs and display charts from them.
 
 ## Getting Started:
 
 To use the spreadsheet, you need to copy and configure it for receiving Fluentd event by its endpoint URL with the following steps.
 
-1. Open [this spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AtBJDW02Hvh9dHUtZFlPQ0FRRGltY3dHb3hWaE11Wmc#gid=206) and select `File` - `Make a copy` menu to make a copy of it
+1. Open [this spreadsheet](https://docs.google.com/spreadsheets/d/1mRG77KeAdEhOspGh00R7tQaDLvXC1th1pbe8P3tXm2A) and select `File` - `Make a copy` menu to make a copy of it
 2. Copy the URL of the copied spreadsheet to clipboard
 3. Select `Tools` - `Script editor...` menu
 4. On the Script editor, open `fluent_listener.gs`. Paste the copied URL on the place of `<<PLEASE PUT YOUR SPREADSHEET URL HERE>>`. Select `File` - `Save` menu to save the file
