@@ -6,17 +6,19 @@
 SPREADSHEET_URL = "<<PLEASE PUT YOUR SPREADSHEET URL HERE>>";
 
 // CONSTS
-MAX_ROWS_LARGE = 300; // for AREA, LINE, SCATTER and TABLE
-MAX_ROWS_SMALL = 30;  // for BAR and COLUMN
-DEFAULT_SHEET_NAME = "logs"; // sheet name used when tag isn't specified
-START_ROW = 1;
+MAX_ROWS_LARGE = 300; // number of max rows for AREA, LINE, SCATTER and TABLE
+MAX_ROWS_SMALL = 30;  // number of max rows for BAR and COLUMN
+CHART_WIDTH = 600; // width of each chart in pixel
+CHART_HEIGHT = 300; // height of each chart in pixel
+CHARTS_PER_ROW = 2; // number of charts in a row
+LOG_SHEET_NAME = "logs"; // sheet name used when the event log doesn't include "tag" field
 
 // receiving posts from fluentd
 function doPost(e){
   
   // for testing
   if (!e) {
-    e = {"parameter": {"value1" : Math.random() * 10, "value2" : Math.random() * 10, "value3" : Math.random() * 10, "tag" : "test_LINE"}};
+    e = {"parameter": {"value1" : Math.random() * 10, "value2" : Math.random() * 10, "tag" : "test_LINE"}};
   }
 
   // extract fluentd tag
@@ -38,17 +40,20 @@ function doPost(e){
   var sheet = getOrInsertSheetByTag(tag, props.length + 1);
 
   // add new row and delete the last row
-  sheet.insertRows(START_ROW + 1);
+  sheet.insertRows(2);
   sheet.deleteRow(sheet.getMaxRows());
   
   // set timestamp
-  sheet.getRange(START_ROW + 1, 1).setValue(timestamp);
+  sheet.getRange(2, 1).setValue(timestamp);
   
   // insert new values
   for (i = 0; i < props.length; i++) {
-    sheet.getRange(START_ROW, i + 2).setValue(props[i]);
-    sheet.getRange(START_ROW + 1, i + 2).setValue(e.parameter[props[i]]);
+    sheet.getRange(1, i + 2).setValue(props[i]);
+    sheet.getRange(2, i + 2).setValue(e.parameter[props[i]]);
   }
+
+  // response with empty string
+  return ContentService.createTextOutput("");
 }
 
 // get or insert sheet
@@ -56,12 +61,11 @@ function getOrInsertSheetByTag(tag, colSize) {
   
   // determine sheet name from the tag name
   if (tag == "") {
-    tag = DEFAULT_SHEET_NAME;
+    tag = LOG_SHEET_NAME;
   }
   var tableSheetName = tag;
   
   // determine chart properties from the tag suffixes
-  var chartSheetName = null;
   var chartType = null;
   var startColumn = 1;
   var rowSize = MAX_ROWS_LARGE;
@@ -69,7 +73,6 @@ function getOrInsertSheetByTag(tag, colSize) {
   var matched = tag.match(/(.*)_(AREA|BAR|COLUMN|LINE|SCATTER|TABLE)(_STACKED)?/);
   if (matched) {
     tableSheetName = matched[1];
-    chartSheetName = tag;
     isStacked = matched[3] != null;
     if (matched[2] == "AREA") {
       chartType = Charts.ChartType.AREA;
@@ -97,29 +100,32 @@ function getOrInsertSheetByTag(tag, colSize) {
   
   // insert new sheet for table
   tableSheet = sheets.insertSheet(tableSheetName);
-  tableSheet.insertRows(START_ROW, rowSize + 1);
+  tableSheet.insertRows(1, rowSize + 1);
   if (tableSheet.getMaxRows() > rowSize + 1) {
     tableSheet.deleteRows(rowSize + 1, tableSheet.getMaxRows() - rowSize - 1);
   }
-  tableSheet.getRange(START_ROW, 1).setValue("timestamp");
+  tableSheet.getRange(1, 1).setValue("timestamp");
   
-  // insert new sheet for chart
-  if (chartSheetName) {
-    var chartSheet = sheets.insertSheet(chartSheetName);
-    var chart = chartSheet.newChart()
-    .setChartType(chartType)
-    .addRange(tableSheet.getRange(1, startColumn, rowSize + 1, colSize))
-    .setPosition(1, 1, 0, 0)
-    .setOption("width", 1300)
-    .setOption("height", 600)
-    .setOption("isStacked", isStacked)
-    .setOption("title", tableSheetName)
-    .build();
-    chartSheet.insertChart(chart);
-    sheets.setActiveSheet(chartSheet);
-  } else {
-    sheets.setActiveSheet(tableSheet);
-  }
+  // if there's no need for chart, return
+  if (!matched) return tableSheet;
+  
+  // determine position of the new chart
+  var firstSheet = sheets.getSheets()[0];
+  var numCharts = firstSheet.getCharts().length;
+  var posX = (numCharts % CHARTS_PER_ROW) * CHART_WIDTH;
+  var posY = Math.floor(numCharts / CHARTS_PER_ROW) * CHART_HEIGHT;
+  
+  // insert new chart to the firstSheet
+  var chart = firstSheet.newChart()
+  .setChartType(chartType)
+  .addRange(tableSheet.getRange(1, startColumn, rowSize + 1, colSize))
+  .setPosition(1, 1, posX, posY)
+  .setOption("width", CHART_WIDTH)
+  .setOption("height", CHART_HEIGHT)
+  .setOption("isStacked", isStacked)
+  .setOption("title", tableSheetName)
+  .build();
+  firstSheet.insertChart(chart);
   return tableSheet;
 }
 
