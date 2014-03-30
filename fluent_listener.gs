@@ -45,6 +45,7 @@ function doPost(e){
   
   // set timestamp
   sheet.getRange(2, 1).setValue(timestamp);
+  sheet.getRange(2, 1).setNumberFormat("M/dd HH:mm:ss");
   
   // insert new values
   for (i = 0; i < props.length; i++) {
