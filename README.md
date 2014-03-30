@@ -1,7 +1,7 @@
-fluent-gas-dashboard
+Fluent Dashboard
 ====================
 
-fluent-gas-dashboard is a [Google Spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AtBJDW02Hvh9dHUtZFlPQ0FRRGltY3dHb3hWaE11Wmc#gid=206) that is designed to receive Fluentd event logs and display charts from them.
+Fluent Dashboard is a [Google Spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AtBJDW02Hvh9dHUtZFlPQ0FRRGltY3dHb3hWaE11Wmc#gid=206) that receives Fluentd event logs and display charts from them.
 
 ## Getting Started:
 
