@@ -15,7 +15,7 @@ To use the spreadsheet, you need to copy and configure it for receiving Fluentd 
 6. On the `Deploy as web app` dialog, enter `1` in the `Project version` field and click `Save New Version`, select `anyone including allowing anonymous access` on the `Who has access to the app` menu, and click `Deploy` button
 7. Select the `Current web app URL`. This is the endpoint URL for receiving event logs from Fluentd. Copy and paste the URL to clipboard or anywhere to use it later
 8. Select `Run` - `doPost` menu, click `Continue` button of the `Authorization Required` dialog and click `Accept` button on the `Request for Permission` dialog
-9. Confirm that there are `test` and `test_LINE` sheets appeared on the spreadsheet. Now it's ready to accept event logs from Fluentd
+9. Confirm that there are a line chart appeared on the spreadsheet. Now it's ready to accept event logs from Fluentd
 
 You can choose one from the two options to use the spreadsheet.
 
