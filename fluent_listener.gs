@@ -5,38 +5,52 @@
 // SPREADSHEET URL
 SPREADSHEET_URL = "<<PLEASE PUT YOUR SPREADSHEET URL HERE>>";
 
+
 // CONSTS
-MAX_ROWS_LARGE = 300; // number of max rows for AREA, LINE, SCATTER and TABLE
+MAX_ROWS_LARGE = 100; // number of max rows for AREA, LINE, SCATTER and TABLE
 MAX_ROWS_SMALL = 30;  // number of max rows for BAR and COLUMN
 CHART_WIDTH = 600; // width of each chart in pixel
 CHART_HEIGHT = 300; // height of each chart in pixel
 CHARTS_PER_ROW = 2; // number of charts in a row
 LOG_SHEET_NAME = "logs"; // sheet name used when the event log doesn't include "tag" field
 
-// receiving posts from fluentd
+// receiving events from fluent-plugin-https-json
 function doPost(e){
   
   // for testing
   if (!e) {
-    e = {"parameter": {"value1" : Math.random() * 10, "value2" : Math.random() * 10, "tag" : "test_LINE"}};
-  }
-
-  // extract fluentd tag
-  var tag = "";
-  if (e.parameter.tag) {
-    tag = e.parameter.tag;
-    delete e.parameter.tag;
+    e = {"parameters":
+         {"events":
+          '[{"tag": "test_LINE","time": "1","record": {"value1": "10", "value2": "20"}},{"tag": "test_LINE","time": "2","record": {"value1": "15", "value2": "22"}}]'
+         }
+        }
   }
   
-  // extract timestamp (use local timestamp if not available)
-  var timestamp = new Date();
-  if (e.parameter.timestamp) {
-    timestamp = new Date(Number(e.parameter.timestamp) * 1000);
-    delete e.parameter.timestamp;
+  // process each event
+  Logger.log(e.parameters.events.toString());
+  var events = JSON.parse(e.parameters.events);
+  for each (var event in events) {
+    processEvent(event);
   }
 
+  // response with empty string
+  return ContentService.createTextOutput("");
+}
+
+// process each event
+function processEvent(event) {
+  
+  Logger.log(event);
+  if (!event.record) return;
+
+  // extract fluentd tag and timestamp
+  var tag = event.tag;
+  delete event.tag;
+  var timestamp = new Date(Number(event.time) * 1000);
+  delete event.time;
+
   // get or insert sheet
-  var props = Object.getOwnPropertyNames(e.parameter).sort();
+  var props = Object.getOwnPropertyNames(event.record).sort();
   var sheet = getOrInsertSheetByTag(tag, props.length + 1);
 
   // add new row and delete the last row
@@ -50,11 +64,8 @@ function doPost(e){
   // insert new values
   for (i = 0; i < props.length; i++) {
     sheet.getRange(1, i + 2).setValue(props[i]);
-    sheet.getRange(2, i + 2).setValue(e.parameter[props[i]]);
+    sheet.getRange(2, i + 2).setValue(event.record[props[i]]);
   }
-
-  // response with empty string
-  return ContentService.createTextOutput("");
 }
 
 // get or insert sheet
