@@ -27,7 +27,6 @@ function doPost(e){
   }
   
   // process each event
-  Logger.log(e.parameters.events.toString());
   var events = JSON.parse(e.parameters.events);
   for each (var event in events) {
     processEvent(event);
@@ -40,10 +39,8 @@ function doPost(e){
 // process each event
 function processEvent(event) {
   
-  Logger.log(event);
-  if (!event.record) return;
-
   // extract fluentd tag and timestamp
+  if (!event.record) return;
   var tag = event.tag;
   delete event.tag;
   var timestamp = new Date(Number(event.time) * 1000);
