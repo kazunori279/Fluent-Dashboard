@@ -12,7 +12,7 @@ To use the spreadsheet, you need to copy and configure it for receiving Fluentd 
 3. Select `Tools` - `Script editor...` menu
 4. On the Script editor, open `fluent_listener.gs`. Paste the copied URL on the place of `<<PLEASE PUT YOUR SPREADSHEET URL HERE>>`. Select `File` - `Save` menu to save the file
 5. Select `Publish` - `Deploy as web app...`
-6. On the `Deploy as web app` dialog, enter `1` in the `Project version` field and click `Save New Version`, select `anyone including allowing anonymous access` on the `Who has access to the app` menu, and click `Deploy` button
+6. On the `Deploy as web app` dialog, enter `1` in the `Project version` field and click `Save New Version`, select `Anyone, even anonymous` on the `Who has access to the app` menu, and click `Deploy` button
 7. Select the `Current web app URL`. This is the endpoint URL for receiving event logs from Fluentd. Copy and paste the URL to clipboard or anywhere to use it later
 8. Select `Run` - `doPost` menu, click `Continue` button of the `Authorization Required` dialog and click `Accept` button on the `Request for Permission` dialog
 9. Confirm that there are a line chart appeared on the spreadsheet. Now it's ready to accept event logs from Fluentd
