@@ -38,19 +38,18 @@ $ sudo docker run -p 26578:26578 -p 26571:26571 -p 24224:24224 -p 24224:24224/ud
 In this option, you can use the spreadsheet as a dashboard for any event log collected by Fluentd. 
 
 1. [Configure a host for Fluentd installation](https://www.google.com/url?q=http://docs.fluentd.org/articles/before-install&usd=2&usg=ALhdy2-Eq3wSUPNxaZr13oC2Mt5UssbUhw)
-2. Download [fluent-plugin-out-https](https://www.google.com/url?q=https://github.com/kazunori279/fluent-plugin-out-https&usd=2&usg=ALhdy28zgZOuf3L6f8uw3RZDVZefvDH1eA)
-3. Copy `/lib/fluent/plugin/out_https.rb` into `/plugin` directory of your Fluentd installation
+2. Install [fluent-plugin-https-json](https://github.com/jdoconnor/fluentd_https_out)
 4. Edit `td-agent.conf` to add the following match element. Replace the `<<ENDPOINT URL>>` with your endpoint URL and edit the `**` pattern if needed. Save the file and restart td-agent
 
 ```td-agent.conf
     <match **>
-      type            http
-      use_ssl         true
-      include_tag     true
-      include_timestamp true
-      endpoint_url    <<ENDPOINT URL>>
-      http_method     post
-      serializer      form
+        type            https_json
+        use_https       true
+        buffer_path     /tmp/buffer
+        buffer_chunk_limit 256m
+        buffer_queue_limit 128
+        flush_interval  3s
+        endpoint        <<ENDPOINT URL>>
     </match>
 ```
 
