@@ -1,6 +1,6 @@
 # Demo instruction
 
-The following is the procedure used in the Fluent Dashboard demo [video](https://www.youtube.com/watch?v=VPNMe4znWDo)
+The following is the procedure used in the [Fluent Dashboard demo video](https://www.youtube.com/watch?v=VPNMe4znWDo)
 
 ### create GCE instances on the console
 * `demo-norikra`
