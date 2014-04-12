@@ -6,12 +6,12 @@ The following is the procedure used in the [Fluent Dashboard demo video](https:/
 
 Prepare one copy of Fluent Dashboard with the instruction on the README.
 
-### create GCE instances on the console
+### Create GCE instances on the console
 * `demo-norikra`
 * `demo-nginx`
 * `demo-ab`
 
-### login each instance and download Docker images
+### Log into each instance and download Docker images
 
 ```
 > gcutil ssh demo-norikra
@@ -28,7 +28,7 @@ Prepare one copy of Fluent Dashboard with the instruction on the README.
 > sudo docker pull kazunori279/ab
 ```
 
-### run norikra in `demo-norikra`
+### Run norikra in `demo-norikra`
 
 Please replace <<YOUR DASHBOARD ENDPOINT URL>> with your endpoint URL.
 
@@ -36,15 +36,15 @@ Please replace <<YOUR DASHBOARD ENDPOINT URL>> with your endpoint URL.
 > sudo docker run -p 26578:26578 -p 26571:26571 -p 24224:24224 -p 24224:24224/udp -e GAS_URL=<<YOUR DASHBOARD ENDPOINT URL>> -t -i -d kazunori279/fluentd-norikra-gas
 ```
 
-### copy norikra external IP on the console
+### Copy norikra external IP on the console
 
-### show norikra page on browser
+### Show norikra page on browser
 
 ```
 > http://<<NORIKRA EXT IP>>:26578/
 ```
 
-### add a norikra query `nginx_rps_LINE`
+### Add a norikra query `nginx_rps_LINE`
 
 ```
 select count(*) / 5 as rps 
@@ -52,28 +52,28 @@ from nginx_access.win:time(5 sec)
 output snapshot every 3 sec
 ```
 
-### run nginx in `demo-nginx`
+### Run nginx in `demo-nginx`
 
 ```
 sudo docker run -e NORIKRA_IP=<<NORIKRA INT IP>> -p 80:80 -t -i -d kazunori279/fluentd-nginx
 ```
 
-### copy nginx external IP
+### Copy nginx external IP
 
-### show nginx default top page on browser
+### Show nginx default top page on browser
 
 ```
 http://<<NGINX EXT IP>>
 ```
 
-### run apache bench in `demo-ab`
+### Run apache bench in `demo-ab`
 
 ```
 sudo docker run -t -i kazunori279/ab
 ab -c 100 -n 100000 http://<<NGINX EXT IP>>
 ```
 
-### add a norikra query `dstat_cpu_AREA_STACKED`
+### Add a norikra query `dstat_cpu_AREA_STACKED`
 
 ```
 select 
@@ -86,7 +86,7 @@ from dstat.win:time(5 sec)
 output snapshot every 3 sec
 ```
 
-### add a norikra query `dstat_net_BAR`
+### Add a norikra query `dstat_net_BAR`
 
 ```
 select 
