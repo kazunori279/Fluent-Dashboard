@@ -2,12 +2,12 @@
 
 The following is the procedure used in the Fluent Dashboard demo [video](https://www.youtube.com/watch?v=VPNMe4znWDo)
 
-## create GCE instances on the console
-* demo-norikra
-* demo-nginx
-* demo-ab
+### create GCE instances on the console
+* `demo-norikra`
+* `demo-nginx`
+* `demo-ab`
 
-## login each instance and download Docker images
+### login each instance and download Docker images
 
 ```
 > gcutil ssh demo-norikra
@@ -24,21 +24,21 @@ The following is the procedure used in the Fluent Dashboard demo [video](https:/
 > sudo docker pull kazunori279/ab
 ```
 
-## run norikra in demo-norikra
+### run norikra in `demo-norikra`
 
 ```
 > sudo docker run -p 26578:26578 -p 26571:26571 -p 24224:24224 -p 24224:24224/udp -e GAS_URL=https://script.google.com/macros/s/AKfycbzfd9Dch7COSbouTCozNzHxDAGz7l5-BxXqtOz1_kfrAJh9wJiG/exec -t -i -d kazunori279/fluentd-norikra-gas
 ```
 
-## copy norikra external IP on the console
+### copy norikra external IP on the console
 
-## show norikra page on browser
+### show norikra page on browser
 
 ```
 > http://<<NORIKRA EXT IP>>:26578/
 ```
 
-## add a norikra query `nginx_rps_LINE`
+### add a norikra query `nginx_rps_LINE`
 
 ```
 select count(*) / 5 as rps 
@@ -46,28 +46,28 @@ from nginx_access.win:time(5 sec)
 output snapshot every 3 sec
 ```
 
-## run nginx in demo-nginx
+### run nginx in `demo-nginx`
 
 ```
 sudo docker run -e NORIKRA_IP=<<NORIKRA INT IP>> -p 80:80 -t -i -d kazunori279/fluentd-nginx
 ```
 
-## copy nginx external IP
+### copy nginx external IP
 
-## show nginx default top page on browser
+### show nginx default top page on browser
 
 ```
 http://<<NGINX EXT IP>>
 ```
 
-## run apache bench in demo-ab
+### run apache bench in `demo-ab`
 
 ```
 sudo docker run -t -i kazunori279/ab
 ab -c 100 -n 100000 http://<<NGINX EXT IP>>
 ```
 
-## add a norikra query `dstat_cpu_AREA_STACKED`
+### add a norikra query `dstat_cpu_AREA_STACKED`
 
 ```
 select 
@@ -80,7 +80,7 @@ from dstat.win:time(5 sec)
 output snapshot every 3 sec
 ```
 
-## add a norikra query `dstat_net_BAR`
+### add a norikra query `dstat_net_BAR`
 
 ```
 select 
