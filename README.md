@@ -1,7 +1,7 @@
 Fluent Dashboard
 ====================
 
-Fluent Dashboard is a Google Spreadsheet that receives Fluentd event logs and display charts from them.
+Fluent Dashboard is a Google Spreadsheet that receives Fluentd event logs and display charts from them. [Demo video and instruction](https://github.com/kazunori279/Fluent-Dashboard/blob/master/demo_instruction.md) is also available.
 
 ## Getting Started:
 
