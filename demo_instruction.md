@@ -2,6 +2,10 @@
 
 The following is the procedure used in the [Fluent Dashboard demo video](https://www.youtube.com/watch?v=VPNMe4znWDo)
 
+### Prepare one copy of Fluent Dashboard
+
+Prepare one copy of Fluent Dashboard with the instruction on the README.
+
 ### create GCE instances on the console
 * `demo-norikra`
 * `demo-nginx`
@@ -26,8 +30,10 @@ The following is the procedure used in the [Fluent Dashboard demo video](https:/
 
 ### run norikra in `demo-norikra`
 
+Please replace <<YOUR DASHBOARD ENDPOINT URL>> with your endpoint URL.
+
 ```
-> sudo docker run -p 26578:26578 -p 26571:26571 -p 24224:24224 -p 24224:24224/udp -e GAS_URL=https://script.google.com/macros/s/AKfycbzfd9Dch7COSbouTCozNzHxDAGz7l5-BxXqtOz1_kfrAJh9wJiG/exec -t -i -d kazunori279/fluentd-norikra-gas
+> sudo docker run -p 26578:26578 -p 26571:26571 -p 24224:24224 -p 24224:24224/udp -e GAS_URL=<<YOUR DASHBOARD ENDPOINT URL>> -t -i -d kazunori279/fluentd-norikra-gas
 ```
 
 ### copy norikra external IP on the console
