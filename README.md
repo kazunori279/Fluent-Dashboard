@@ -29,7 +29,7 @@ To use the spreadsheet, you need to copy and configure it for receiving Fluentd 
 
 You can choose one from the two options to use the spreadsheet.
 
-### Option A: Use with `fluent-plugin-out-https`:
+### Option A: Use with `fluent-plugin-https-json`:
 
 In this option, you can use the spreadsheet as a dashboard for any event log collected by Fluentd. 
 
