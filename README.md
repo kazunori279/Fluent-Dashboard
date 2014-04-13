@@ -1,15 +1,15 @@
 Fluent Dashboard
 ====================
 
-Fluent Dashboard is a Google Spreadsheet that receives Fluentd event logs and display charts from them. 
+Fluent Dashboard is a Google Spreadsheet that receives Fluentd event logs and display charts from them in real-time. 
 
 
 ![Fluent Dashboard](http://i.giflike.com/sLgJtW9.gif)
 
 ## Features
 
-- It's a **Google Spreadsheet**: hosted by Google at free, easy to customize and integrate with your business process even for non-programmers
-- It's **Real-time**: If you hit your nginx from browser, Fluent Dashboard will draw a chart for it within 10 sec. Useful for watching how the system stats and service KPIs are moving when you have game or campaign events etc
+- It's a **Google Spreadsheet**: hosted by Google at free, easy to customize and integrate with your business process even for non-programmers. Copy the [spreadsheet](https://docs.google.com/spreadsheets/d/1mRG77KeAdEhOspGh00R7tQaDLvXC1th1pbe8P3tXm2A), click some buttons as in Getting Started, and it's ready to use
+- It's **real-time**: If you hit your nginx from browser, Fluent Dashboard will draw a chart for it within 10 sec. Useful for watching how the system stats and service KPIs are moving when you have game or campaign events etc
 - Easy integration with **[Norikra](https://github.com/norikra/norikra), a real-time CEP**: [Demo video and instruction](https://github.com/kazunori279/Fluent-Dashboard/blob/master/demo_instruction.md) shows it takes only 7 min to build a cluster of Apache Bench > nginx > Norikra > Fluent Dashboard from scratch by using [Docker](http://docker.io/), to draw charts of req/s, cpu and net stats of the nginx server
 - Suited for building a **Lambda Architecture**: the dashboard could be used for forming a [lambda architecture](http://lambda-architecture.net/) to get a merged view from 1) real-time continuous query on streaming data and 2) batch-based query on historical and large data set. No more worries for CPU consumption of your Elasticsearch
 
