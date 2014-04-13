@@ -7,6 +7,9 @@ The following is the procedure used in the [Fluent Dashboard demo video](https:/
 Prepare one copy of Fluent Dashboard with the instruction on the README.
 
 ### Create GCE instances on the console
+
+The demo uses a customized GCE image that has Debian + Docker installed.
+
 * `demo-norikra`
 * `demo-nginx`
 * `demo-ab`
