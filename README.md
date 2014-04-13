@@ -5,10 +5,10 @@ Fluent Dashboard is a Google Spreadsheet that receives Fluentd event logs and di
 
 ## Features
 
-- It's a Google Spreadsheet: hosted by Google at free, easy to customize and integrate with your business process even for non-programmers
-- Real-time: If you hit your nginx from browser, Fluent Dashboard will draw a chart for it within 10 sec. Useful for watching how the system stats and service KPIs are moving when you have game or campaign events etc
-- Easy integration with [Norikra](https://github.com/norikra/norikra), a real-time CEP, by Docker: [Demo video and instruction](https://github.com/kazunori279/Fluent-Dashboard/blob/master/demo_instruction.md) shows it takes only 7 min to build a cluster of Apache Bench > nginx > Norikra > Fluent Dashboard from scratch
-- Lambda Architecture: the goal is to form the lambda architecture in combination with [Google BigQuery](https://cloud.google.com/products/bigquery/). You could get a merged view from 1) real-time continuous query on streaming data and 2) batch-based query on historical and large data set. No more worries for CPU consumption of your ElasticSearch
+- It's a **Google Spreadsheet**: hosted by Google at free, easy to customize and integrate with your business process even for non-programmers
+- It's **Real-time**: If you hit your nginx from browser, Fluent Dashboard will draw a chart for it within 10 sec. Useful for watching how the system stats and service KPIs are moving when you have game or campaign events etc
+- Easy integration with **[Norikra](https://github.com/norikra/norikra), a real-time CEP**: [Demo video and instruction](https://github.com/kazunori279/Fluent-Dashboard/blob/master/demo_instruction.md) shows it takes only 7 min to build a cluster of Apache Bench > nginx > Norikra > Fluent Dashboard from scratch by using [Docker](http://docker.io/)
+- Suited for building a **Lambda Architecture**: the dashboard could be used for forming a [lambda architecture](http://lambda-architecture.net/) to get a merged view from 1) real-time continuous query on streaming data and 2) batch-based query on historical and large data set. No more worries for CPU consumption of your ElasticSearch
 
 ## Getting Started
 
