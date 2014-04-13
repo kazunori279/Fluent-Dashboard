@@ -29,21 +29,7 @@ To use the spreadsheet, you need to copy and configure it for receiving Fluentd 
 
 You can choose one from the two options to use the spreadsheet.
 
-### Option A: Use with `fluentd-norikra-gas` Docker image:
-
-In this option, you can use the spreadsheet as a dashboard for [Norikra](http://norikra.github.io/), a Complex Event Processing (CEP) tool that let you use SQL for fast and scalable event log aggregation.
-
-1. [Configure a host for Fluentd installation](https://www.google.com/url?q=http://docs.fluentd.org/articles/before-install&usd=2&usg=ALhdy2-Eq3wSUPNxaZr13oC2Mt5UssbUhw)
-2. [Prepare a Docker environment](https://www.google.com/url?q=https://www.docker.io/&usd=2&usg=ALhdy2-uNZKLM-jQQXncnc5eKHG-11c4og)
-3. Execute the following docker command with putting the endpoint URL at the place of `<<ENDPOINT URL>>`
-
-```
-$ sudo docker run -p 26578:26578 -p 26571:26571 -p 24224:24224 -p 24224:24224/udp -e GAS_URL=<<ENDPOINT URL>> -t -i -d kazunori279/fluentd-norikra-gas
-```
-
-4. Now the host works as a Fluentd + Norikra server. Configure your Fluentd clients to forward logs to the host, and add Norikra queries by using its Web UI. The query result will be displayed as a new sheet on this spreadsheet. See [this site](http://norikra.github.io/) for details of Norikra
-
-### Option B: Use with `fluent-plugin-out-https`:
+### Option A: Use with `fluent-plugin-out-https`:
 
 In this option, you can use the spreadsheet as a dashboard for any event log collected by Fluentd. 
 
@@ -62,6 +48,20 @@ In this option, you can use the spreadsheet as a dashboard for any event log col
         endpoint        <<ENDPOINT URL>>
     </match>
 ```
+
+### Option B: Use with `fluentd-norikra-gas` Docker image:
+
+In this option, you can use the spreadsheet as a dashboard for [Norikra](http://norikra.github.io/), a Complex Event Processing (CEP) tool that let you use SQL for fast and scalable event log aggregation.
+
+1. [Configure a host for Fluentd installation](https://www.google.com/url?q=http://docs.fluentd.org/articles/before-install&usd=2&usg=ALhdy2-Eq3wSUPNxaZr13oC2Mt5UssbUhw)
+2. [Prepare a Docker environment](https://www.google.com/url?q=https://www.docker.io/&usd=2&usg=ALhdy2-uNZKLM-jQQXncnc5eKHG-11c4og)
+3. Execute the following docker command with putting the endpoint URL at the place of `<<ENDPOINT URL>>`
+
+```
+$ sudo docker run -p 26578:26578 -p 26571:26571 -p 24224:24224 -p 24224:24224/udp -e GAS_URL=<<ENDPOINT URL>> -t -i -d kazunori279/fluentd-norikra-gas
+```
+
+Now the host works as a Fluentd + Norikra server. Configure your Fluentd clients to forward logs to the host, and add Norikra queries by using its Web UI. The query result will be displayed as a new sheet on this spreadsheet. See [this site](http://norikra.github.io/) for details of Norikra.
 
 ## Usage:
 
