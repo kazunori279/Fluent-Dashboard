@@ -43,7 +43,7 @@ $ sudo docker run -p 26578:26578 -p 26571:26571 -p 24224:24224 -p 24224:24224/ud
 
 4. Now the host works as a Fluentd + Norikra server. Configure your Fluentd clients to forward logs to the host, and add Norikra queries by using its Web UI. The query result will be displayed as a new sheet on this spreadsheet. See [this site](http://norikra.github.io/) for details of Norikra
 
-### Option B: Use with fluent-plugin-out-https:
+### Option B: Use with `fluent-plugin-out-https`:
 
 In this option, you can use the spreadsheet as a dashboard for any event log collected by Fluentd. 
 
