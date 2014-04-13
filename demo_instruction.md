@@ -55,6 +55,8 @@ from nginx_access.win:time(5 sec)
 output snapshot every 3 sec
 ```
 
+### Copy norikra internal IP on the console
+
 ### Run nginx in `demo-nginx`
 
 ```
