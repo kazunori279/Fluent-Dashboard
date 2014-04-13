@@ -8,7 +8,7 @@ Prepare one copy of Fluent Dashboard with the instruction on the README.
 
 ### Create GCE instances on the console
 
-The demo uses a customized GCE image that has Debian + Docker installed.
+The demo uses a customized GCE image that has Debian + Docker installed. Create three instances for Norikra, nginx and Apache Bench.
 
 * `demo-norikra`
 * `demo-nginx`
